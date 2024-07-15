@@ -9,21 +9,26 @@ const typeDefs = gql`
   }
 
   type Post {
-    id: String
-    title: String
+    id: String!
+    title: String!
+    description: String
   }
 
   type Query {
     getUsers: [User!]!
-    getPosts: [Post]
+    getPosts: [Post!]!
   }
 `;
 
 const resolvers = {
   Query: {
-    getUsers: [
+    getUsers: () => [
       { id: "1", name: "Codeawy" },
       { id: "2", name: "Naga" },
+    ],
+    getPosts: () => [
+      { id: "1", title: "First Post" },
+      { id: "2", title: "Second Post" },
     ],
   },
 };
